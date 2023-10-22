@@ -31,7 +31,8 @@ module.exports = {
         '2-2': '2px 2px 0 rgba(0, 0, 0, 0.5)',
       },
       backgroundImage: {
-        // 'hero-front': "url('./assets/img/background.jpg')",
+        'hero-footer': "url('./assets/images/all/footerbg.jpg')",
+        'logo': "url('./assets/images/logo/logo.png')",
         'hero-front': "url('./assets/img/bg-done.jpg')",
         'hero-star': "url('./assets/img/star.png')",
       },

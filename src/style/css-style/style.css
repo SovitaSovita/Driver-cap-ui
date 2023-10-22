@@ -79,7 +79,7 @@ p, span{
 /* --------main cover----- */
 
 .main-cover {
-    background-image: url(../asset/images/all/ngkor-thom-cover.jpg);
+    /* background-image: url(../asset/images/all/ngkor-thom-cover.jpg); */
     background-size: cover;
     background-attachment: fixed;
     height: 750px;
@@ -748,15 +748,15 @@ footer .ft-txt-contact{
 
 
 .bg-hot-deal{
-    background-image: url('../asset/images/why-choose-us/discountbg.jpg');
+    /* background-image: url('../asset/images/why-choose-us/discountbg.jpg'); */
 }
 img{
     object-fit: cover;
 }
 
 .bg_img_div{
-    background-image: url('../asset/images/why-choose-us/discountbg.jpg');
+    /* background-image: url('../asset/images/why-choose-us/discountbg.jpg'); */
 }
 .bg_img_div2{
-    background-image: url('../asset/images/tour-type/ourtourtypebg.jpg');
+    /* background-image: url('../asset/images/tour-type/ourtourtypebg.jpg'); */
 }
