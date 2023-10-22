@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Labrada:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Labrada:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Labrada:wght@400;700&family=Tajawal&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Faustina&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Roboto&display=swap');
+
+body {
+  background: 	whitesmoke;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased; 
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+html {
+  --color-background: #ffffff;
+  --color-text: #000000;
+  --color-text-light: lightgray;
+  --color-button-start: #0557ff;
+  --color-button-stop: #ff0000;
+  --color-button-text: #ffffff;
+}
+
+.main-font-end {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+	margin: 0;
+	padding: 0;
+  background-color: #bd0202;
+}
+/* @media only screen and (max-width: 992px){
+  .main-font-end{
+    width: 800px;
+  }
+} */
+
+.RandomPicker__controls {
+  position: absolute;
+  left: 50%;
+  top: 70%;
+  transform:translate(-50%, -50%);
+  
+  > *:not(:last-child) {
+    margin-bottom: 16px;
+  }
+} 
+
+
+
+.main_draw_box{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-58%, -79.5%);
+  width: 850px;
+  height: auto;
+}
+/* @media only screen and (min-width: 1536px){
+  .main_draw_box{
+    padding-top: 120px;
+  }
+} */
+
+.text-border {
+  text-shadow: -0.9px -0.4px 0.2px yellow;
+}
+
+@media (max-width: 1280px) {
+  .width_winner{
+    width: 25%;
+  }
+}

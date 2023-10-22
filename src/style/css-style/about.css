@@ -1,0 +1,72 @@
+h1,h2,h3,h4,h5,h6,p,*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+:root{
+    --txtcolor: #26bdf7;
+    --bgcolor: #323f54;
+    --bgOverlay: #323f5499;
+    --opacityBG: #323f54ee;
+    --greenBtn: linear-gradient(to right, #00b4db, #0083b0);
+    --txtGradient: linear-gradient(to right, #00b4db, #0083b0);
+    --light : #f1f1f1;
+}
+body{
+    font-family: 'Chenla','Roboto' !important;
+}
+.navbar{
+    margin: 0 !important;
+}
+.navbar .nav-item .nav-link h6{
+    margin-bottom: 0;
+}
+
+.main-about-content{
+    height: 340px;
+    background: var(--txtGradient);
+    border-radius: 0 0 30% 2%;
+}
+    @media only screen and (max-width: 992px){
+        .main-about-content{
+            height: auto;
+            border-radius: 0 0 20% 2%;
+        }
+        .box-hide{
+            display: none;
+        }
+    }
+.left-about{
+    width: auto;
+    height: 380px !important;
+    padding-top: 12px;
+    padding-right: 12px;
+    height: auto;
+    border: 1px solid #fff;
+    transition: .2s ease-out;
+    overflow: hidden;
+    cursor: pointer;
+}
+.left-about:hover{
+    padding: 0px;
+}
+.title{
+    /* height: 223px; */
+    color: #fff;
+
+    
+    /* background-color: #1d976c; */
+}
+
+.box-hide{
+    width: 100%;
+    height: 90px;
+}
+
+.avd-product{
+    background-image: url(https://www.transparenttextures.com/patterns/cubes.png), 
+                    linear-gradient(to right top, #cf4af3, #e73bd7, #f631bc,
+                     #fd31a2, #ff3a8b, #ff4b78, #ff5e68, #ff705c, #ff8c51,
+                      #ffaa49, #ffc848, #ffe652);
+    border-radius: 14px;
+}
