@@ -1,28 +1,33 @@
 import { createSlice } from "@reduxjs/toolkit"
 
 const initialState = {
-    listData: [],
-    winnerList: [],
-    fakeWinner: {},
+    listPopular: [],
+    listTourType: [],
+    listSlide: [],
+    isGet: false,
 }
 
 export const ListSlice = createSlice({
     name : 'customerList',
     initialState,
     reducers : {
-        setListData : (state, action) => {
+        setListPopular : (state, action) => {
         // console.log("action.payload", action.payload)
-           state.listData = action.payload
+           state.listPopular = action.payload
         },
-        setWinner : (state, action) => {
+        setListTourType : (state, action) => {
         // console.log("action.payload", action.payload)
-           state.winnerList = action.payload
+           state.listTourType = action.payload
         },
-        setFake : (state, action) => {
-            state.fakeWinner = action.payload
-        }
+        setListSlide : (state, action) => {
+        // console.log("action.payload", action.payload)
+           state.listSlide = action.payload
+        },
+        setIsGet : (state, action) => {
+           state.isGet = action.payload
+        },
     },
 })
 
-export const {setListData, setWinner, setFake} = ListSlice.actions
+export const {setListPopular, setListTourType, setListSlide, setIsGet} = ListSlice.actions
 export default ListSlice.reducer

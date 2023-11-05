@@ -320,160 +320,6 @@ p, span{
     background: var(--txtGradient);
 }
 
-
-
-
-/*----------swiper-slide--------- */
-.slider {
-    width: 100%;
-    height: 400px;
-    position: relative;
-}
-
-.swiper {
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-}
-
-.swiper-slide {
-    text-align: center;
-    font-size: 18px;
-    background: #fff;
-    border-radius: 10px;
-    /* Center slide text vertically */
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    -webkit-justify-content: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    -webkit-align-items: center;
-    align-items: center;
-}
-
-.img-slide .center-slider-card {
-    width: 100%;
-    height: 60px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    color: #fff;
-    margin-bottom: 0;
-    padding: 20px;
-    background-color: white;
-}
-
-.swiper-slide img {
-    display: block;
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-    object-fit: cover;
-}
-.swiper.mySwiper2{
-    border-radius: 0;
-}
-.img-on-slide img{
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-.swiper-button-next, .swiper-button-prev{
-    min-width: 50px !important;
-    min-height: 50px !important;
-    border: 2px #fff solid;
-    border-radius: 50%;
-    color: #fff !important;
-  }
-  .swiper-button-prev:after,
-  .swiper-button-next:after{
-    font-size: 16px !important;
-  }
-  .swiper-pagination-bullet{
-    min-width: 40px !important;
-    background-color: #fff !important;
-    border-radius: 10px !important;
-  }
-
-  .swiper-slide1 {
-    text-align: center;
-    font-size: 18px;
-    background: #fff;
-    border-radius: 10px;
-    /* Center slide text vertically */
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: -webkit-flex;
-    display: flex;
-    -webkit-box-pack: center;
-    -ms-flex-pack: center;
-    -webkit-justify-content: center;
-    justify-content: center;
-    -webkit-box-align: center;
-    -ms-flex-align: center;
-    -webkit-align-items: center;
-    align-items: center;
-}
-
-
-.card-pill{
-    width: 250px;
-    height: 250px;
-    margin: auto;
-    margin-bottom: 12px;
-    background-color: #000;
-    border-radius: 100%;
-    position: relative;
-}
-.card-pill-overlay{
-    position: absolute;
-    z-index: 99;
-    width: 0%;
-    height: 0%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    overflow: hidden;
-    opacity: 0;
-    transition: .3s;
-}
-.card-pill:hover .card-pill-overlay{
-    opacity: 100%;
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color:rgb(38, 188, 247);
-    border-radius: 50%;
-}
-
-.main-find-des{
-    background-color: #26bdf7;
-    height: 210px;
-}
-
-@media only screen and (max-width: 1200px) {
-    .main-find-des {
-        height: 230px;
-    }
-}
-@media only screen and (max-width: 768px) {
-    .main-find-des {
-        height: 270px;
-    }
-}
-
 /* -----------Special offers------ */
 
 .offer-box-content {
@@ -748,15 +594,15 @@ footer .ft-txt-contact{
 
 
 .bg-hot-deal{
-    /* background-image: url('../asset/images/why-choose-us/discountbg.jpg'); */
+    background-image: url('../../assets/images/why-choose-us/discountbg.jpg');
 }
 img{
     object-fit: cover;
 }
 
 .bg_img_div{
-    /* background-image: url('../asset/images/why-choose-us/discountbg.jpg'); */
+    background-image: url('../../assets/images/why-choose-us/discountbg.jpg');
 }
 .bg_img_div2{
-    /* background-image: url('../asset/images/tour-type/ourtourtypebg.jpg'); */
+    background-image: url('../../assets/images/tour-type/ourtourtypebg.jpg');
 }

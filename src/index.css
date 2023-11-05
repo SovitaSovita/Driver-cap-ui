@@ -1,12 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Labrada:wght@600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Labrada:wght@700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Labrada:wght@400;700&family=Tajawal&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Faustina&display=swap');
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins&family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Battambang&family=Merienda:wght@400;700&display=swap');
 
 body {
   background: 	whitesmoke;

@@ -1,36 +1,67 @@
-import { API_HEADER } from "../Constants"
+import { API, API_HEADER } from "../Constants"
 import { instance } from "../InstanceHeader"
 
-export const get_list = async () => {
+const config = {
+    headers: {
+        'Content-Type': 'multipart/form-data',
+    },
+};
+
+export const get_popular = async () => {
     try {
-        const response = await instance.get(`/api/v1/info/getting-customer-information`)
+        const response = await API.get(`/populartours`)
         return response
     }
     catch (e) {
         console.log(e)
     }
 }
-export const add_list = async (newRow, options) => {
+export const get_popularById = async (id) => {
     try {
-        const response = await API_HEADER.post(`/api/v1/info/customer-information`, newRow, options)
+        const response = await API.get(`/populartours/${id}`)
         return response
     }
     catch (e) {
         console.log(e)
     }
 }
-export const update_list = async (updateRow, oldRow) => {
+export const add_popular = async (newRow, fileImg) => {
     try {
-        const response = await API_HEADER.put(`/api/v1/info/update-customer-imformation/${oldRow.no}`, updateRow)
+        const formData = new FormData();
+        formData.append('imageFile', fileImg);
+        formData.append('title', newRow.title);
+        formData.append('duration', newRow.duration);
+        formData.append('price', newRow.price);
+
+        const response = await API_HEADER.post(`/populartours`, formData, config)
         return response
     }
     catch (e) {
         console.log(e)
     }
 }
-export const delete_list = async (orderNo) => {
+export const update_popular = async (updateRow, fileImg, id) => {
+    console.log(updateRow)
+    console.log(fileImg)
+    console.log(id)
     try {
-        const response = await API_HEADER.delete(`/api/v1/info/delete-customer-imformation/${orderNo}`)
+        const formData = new FormData();
+        formData.append('imageFile', fileImg);
+        formData.append('id', id);
+        formData.append('title', updateRow.title);
+        formData.append('duration', updateRow.duration);
+        formData.append('price', updateRow.price);
+
+        const response = await API_HEADER.put(`/updatepopulartours`, formData, config)
+        return response
+    }
+    catch (e) {
+        console.log(e)
+    }
+}
+export const delete_popular = async (id) => {
+    try {
+        const response = await API_HEADER.delete(`/deletepopulartours/${id}`)
         return response
     }
     catch (e) {
@@ -40,7 +71,7 @@ export const delete_list = async (orderNo) => {
 
 export const upload_excel = async (formData) => {
     try {
-        const response = await API_HEADER.post(`/api/v1/info/file-upload`, formData)
+        const response = await API_HEADER.post(`/info/file-upload`, formData)
         return response
     }
     catch (e){
@@ -50,7 +81,7 @@ export const upload_excel = async (formData) => {
 
 export const insert_winner = async (formData) => {
     try {
-        const response = await API_HEADER.post(`/api/v1/info/insert-winner-information`, formData)
+        const response = await API_HEADER.post(`/info/insert-winner-information`, formData)
         return response
     }
     catch (e){

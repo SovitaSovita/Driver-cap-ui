@@ -4,13 +4,7 @@ import { Link } from "react-router-dom";
 
 import { Field, Form, Formik } from "formik";
 import * as Yup from "yup";
-import { setLoading } from "../redux/slice/LoadingSlice";
-import LoadingComponentBtn from "./LoadingComponent";
-import { resetPassword } from "../redux/service/AuthService";
-import { setPopup } from "../redux/slice/PopupSlice";
 import AlertMesages from "./AlertMesages";
-import { notifyError, notifySuccess } from "../redux/Constants";
-import { Spinner } from "flowbite-react";
 
 import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -34,24 +28,24 @@ export default function ChangePassword() {
   };
 
   const onSubmitPassword = () => {
-    if (password.newPassword == password.confirmPassword) {
-      dispatch(setLoading(true));
-      resetPassword({ ...password }).then((e) => {
-        console.log("mydata", e);
-        dispatch(setPopup(""));
-        if (e.data?.status == true) {
-          notifySuccess("Changed Successfully.")
-          dispatch(setLoading(false));
-        } else {
-          notifyError("Invalid password.")
-          dispatch(setLoading(false));
-        }
-        handleClear()
-      });
-    } else {
-      notifyError("Password not match.")
-      handleClear()
-    }
+    // if (password.newPassword == password.confirmPassword) {
+    //   dispatch(setLoading(true));
+    //   resetPassword({ ...password }).then((e) => {
+    //     console.log("mydata", e);
+    //     dispatch(setPopup(""));
+    //     if (e.data?.status == true) {
+    //       notifySuccess("Changed Successfully.")
+    //       dispatch(setLoading(false));
+    //     } else {
+    //       notifyError("Invalid password.")
+    //       dispatch(setLoading(false));
+    //     }
+    //     handleClear()
+    //   });
+    // } else {
+    //   notifyError("Password not match.")
+    //   handleClear()
+    // }
   };
 
   const handleClear = () => {
@@ -66,7 +60,7 @@ export default function ChangePassword() {
   });
 
   return (
-    <div className="lg:px-32 md:px-24 px-4">
+    <div className="lg:px-32 md: px-4">
       <div className="h-fit bg-white rounded-xl mt-20 py-6 lg:px-20 md:px-14 px-4 shadow-shadow_custom">
         <div className="w-full h-16 bg-green_custom rounded-xl flex items-center">
           <p className="capitalize text-xl font-bold text-black">

@@ -1,42 +1,3 @@
-h1,h2,h3,h4,h5,h6,p,*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-:root{
-    --txtcolor: #fd9e6f;
-    --bgcolor:#323f54;
-    --opacityBG: #323f5486;
-    --greenBtn: linear-gradient(to right, #1d976c, #93f9b9);
-    --txtGradient: linear-gradient(to right, #ff5f6d, #ffc371);
-}
-body{
-    font-family: 'Merienda','Roboto' !important;
-}
-.navbar{
-    margin: 0 !important;
-}
-.navbar .nav-item .nav-link h6{
-    margin-bottom: 0;
-}
-
-/* -------card service content-------- */
-.img-cover-sv{
-    width: 100%;
-    height: 480px;
-}
-.img-cover-sv img{
-    object-fit: cover;
-}
-.img-cover-sv p span{
-    font-size: 60px;
-}
-.text-head-sv{
-    border-left: 3px solid #fd9e6f;
-    line-height: 1.8;
-    font-family: 'Roboto';
-}
-
 .img-sv{
     width: 100%;
     height: 280px;
@@ -44,21 +5,21 @@ body{
 .img-sv img{
     width: 100%;
     height: 100%;
-    filter: grayscale(50%);
+    filter: grayscale(0);
     transition: .1s linear;
     object-fit: cover;
 }
 .line-hv{
     width: 0;
     height: 2px;
-    background-color: #323f54;
-    transition: .7s ease-in;
+    background-color: #26bdf7;
+    transition: .7s ease-in-out;
 }
 .img-sv:hover img{
-    filter: grayscale(0);
+    filter: grayscale(50%);
 }
 .card-content:hover .line-hv{
-    width: 130px;
+    width: 100%;
 }
 .readStory a{
     text-decoration: none;

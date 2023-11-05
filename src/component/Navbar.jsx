@@ -16,8 +16,8 @@ export default function Navbar() {
                 </div>
                 <div className='flex items-center'>
                     {/* btn goto frontEnd */}
-                    <Link to={'/lucky-draw'}>
-                        <Button className='btn btn-outline btn-primary btn-sm px-4'>Let's Draw</Button>
+                    <Link to={'/'}>
+                        <Button className='btn btn-outline btn-primary btn-sm px-4'>View Site</Button>
                     </Link>
                 </div>
             </div>

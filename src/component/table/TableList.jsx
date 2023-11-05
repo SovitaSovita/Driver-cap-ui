@@ -1,10 +1,7 @@
 import { React, useState, useEffect, useRef } from 'react'
-import MaterialTable, { MTablePagination, MTableToolbar } from 'material-table'
-import axios from 'axios';
+import MaterialTable from 'material-table'
 import { forwardRef } from 'react';
-import '../style/style.css'
-import XLSX from 'xlsx';
-
+import '../../style/style.css'
 
 import AddBoxOutlinedIcon from '@mui/icons-material/AddBoxOutlined';
 import ArrowUpward from '@material-ui/icons/ArrowUpward';
@@ -23,14 +20,14 @@ import NoteAddOutlinedIcon from '@mui/icons-material/NoteAddOutlined';
 import DeleteOutlineRoundedIcon from '@mui/icons-material/DeleteOutlineRounded';
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined';
 
-import { add_list, delete_list, get_list, update_list, upload_excel } from '../redux/service/TableListService';
-import { API_HEADER, notifyError, notifySuccess } from '../redux/Constants';
-import AlertMesages from './AlertMesages';
-import { useDispatch } from 'react-redux';
-import { setListData } from '../redux/slice/ListSlice';
-import { useSelector } from 'react-redux';
-import RemoveCustomer from './RemoveCustomer';
+import { add_popular, delete_popular, get_popular, update_popular } from '../../redux/service/TableListService';
+import { BASE_URL, notifyError, notifySuccess } from '../../redux/Constants';
+import AlertMesages from '../AlertMesages';
 import { Spinner } from 'flowbite-react';
+import { useDispatch } from 'react-redux';
+import { setIsGet, setListPopular } from '../../redux/slice/ListSlice';
+import { useSelector } from 'react-redux';
+import EditTablePopularPop from '../editModal/EditTablePopularPop';
 
 
 const tableIcons = {
@@ -56,44 +53,52 @@ const tableIcons = {
 
 const TableList = () => {
 
+  const dispatch = useDispatch();
+  const data = useSelector((state) => state.allList.listPopular)
+  const isGet = useSelector((state) => state.allList.isGet)
+  const newData = data?.map((item, index) => ({ ...item, No: index + 1 }));
+
+  const [fileImg, setFileImg] = useState({ imageFile: null })
   const [isLoading, setIsLoading] = useState(false)
 
-  const options = {
-    headers: { "Access-Control-Allow-Headers": "Content-Type" }
-  }
   const columns = [
-    { title: 'No', field: 'no', editable: 'never'},
-    { title: 'Order Date', field: 'dateOfOrder', type: 'date' },
-    { title: 'Name', field: 'name' },
-    { title: 'Telephone', field: 'phoneNumber' },
-    { title: 'OrderNo', field: 'orderNo' },
+    { title: 'No', field: 'No', editable: 'never' },
+    {
+      title: 'Title', field: 'title', render: (rowData) => (
+        <span>
+          {rowData?.title?.length > 20
+            ? rowData.title.substring(0, 35) + '...'
+            : rowData.title}
+        </span>
+      ),
+    },
+    { title: 'Duration', field: 'duration' },
+    { title: 'Price', field: 'price' },
+    {
+      title: 'Picture', field: 'imageFile',
+      render: (rowData) => (
+        <img src={`${BASE_URL}/images?fileName=${rowData.imageFile}`} alt="Image" className='w-28 h-16 rounded object-cover' />
+      ),
+      editComponent: (props) => (
+        <input type='file' name='imageFile' onChange={handleFileChange} />
+      ),
+    },
   ]
+
 
   useEffect(() => {
     Table()
-  }, [])
-  const [listCustomers, setListCustomers] = useState([]);
-  const dispatch = useDispatch()
+  }, [isGet])
 
 
   const Table = () => {
     setIsLoading(true)
 
-    get_list().then((res) => {
+    get_popular().then((res) => {
       setIsLoading(false)
-      const convertedData = res?.data?.payload?.map(item => {
-        // Convert the timestamp to a JavaScript Date object
-        const dateObject = new Date(item.dateOfOrder);
-        const formattedDate = dateObject.toLocaleString('en-US', { year: 'numeric', month: '2-digit', day: '2-digit' });
+      dispatch(setListPopular(res?.data?.payload))
+      dispatch(setIsGet(false))
 
-        // Return a new object with the updated dateOfOrder field
-        return {
-          ...item,
-          dateOfOrder: formattedDate
-        };
-      });
-      setListCustomers(convertedData);
-      dispatch(setListData(res?.data?.payload))
     }).catch((e) => {
       setIsLoading(false)
       console.log(e)
@@ -101,44 +106,31 @@ const TableList = () => {
   }
 
   const handleFileChange = (event) => {
-    const fileExcel = event.target.files[0]
+    event.stopPropagation();
+    const file = event.target.files[0];
 
-    const formData = new FormData();
-    formData.append('fileExcel', fileExcel);
-
-    upload_excel(formData).then((response) => {
-      Table()
-      console.log(response)
-      notifySuccess(response?.data?.message);
-    })
-      .catch((error) => {
-        // Handle errors if any
-        console.error('Error uploading file:', error);
-      });
+    if (file) {
+      const updatedFileImg = { ...fileImg };
+      updatedFileImg.imageFile = file;
+      setFileImg(updatedFileImg);
+    }
   };
 
-  const handleFileUpload = () => {
-    // if (!selectedFile) {
-    //   alert('Please select a file before uploading.');
-    //   return;
-    // }
+  const [openEditModal, setOpenEditModal] = useState(false);
+  const [getOldData, setGetOldData] = useState({})
 
-    const fileInput = document.querySelector('input[name="fileExcel"]');
-    fileInput.click();
+  const handleEditOpen = (oldData) => {
+    setGetOldData(oldData)
+    setOpenEditModal(true);
+  };
 
-
+  const handleEditClose = () => {
+    setOpenEditModal(false);
   };
 
   return (
     <>
       <AlertMesages />
-      <input
-        type="file"
-        style={{ display: 'none' }}
-        onChange={handleFileChange}
-        name="fileExcel"
-      />
-
       {/* table list */}
       {
         isLoading ? (
@@ -151,44 +143,33 @@ const TableList = () => {
               columns={columns}
               title={null}
               icons={tableIcons}
-              data={listCustomers}
+              data={newData}
               editable={{
-
                 // add function
-                onRowAdd: (newRow) => new Promise((resolve, reject) => {
-                  add_list(newRow, options).then((res) => {
-                    if (res?.status == 200) {
-                      notifySuccess("Inserted Successfully.")
-                    } else {
-                      notifyError("Invaid Information.")
-                    }
-                    Table()
-                  })
-                  setTimeout(() => resolve(), 500)
+                onRowAdd: (newRow) =>
+                  new Promise((resolve, reject) => {
 
-                }),
+                    add_popular(newRow, fileImg.imageFile)
+                      .then((res) => {
+                        console.log(res)
+                        if (res?.status === 200) {
+                          notifySuccess('Inserted Successfully.');
+                          Table();
+                        } else {
+                          notifyError('Invalid Information.');
+                        }
+                      })
+                      .catch((error) => {
+                        console.error(error);
+                        notifyError('Failed to add the row.');
+                      });
 
-                // update function
-                onRowUpdate: (newRow, oldRow) => new Promise((resolve, reject) => {
-                  let newUpdateRow = {
-                    name: newRow.name,
-                    dateOfOrder: new Date(newRow.dateOfOrder).getTime(),
-                    orderNo: newRow.orderNo,
-                    phoneNumber: newRow.phoneNumber
-                  }
-
-                  update_list(newUpdateRow, oldRow).then((res) => {
-                    if (res?.status == 200) {
-                      notifySuccess("Updated Successfully.")
-                    }
-                    Table()
-                  })
-                  setTimeout(() => resolve(), 500)
-                }),
+                    setTimeout(() => resolve(), 500);
+                  }),
 
                 // delete function
                 onRowDelete: (selectedRow) => new Promise((resolve, reject) => {
-                  delete_list(selectedRow?.no).then((res) => {
+                  delete_popular(selectedRow?.id).then((res) => {
                     if (res?.status == 200) {
                       notifySuccess("Deleted Successfully.")
                     }
@@ -197,34 +178,28 @@ const TableList = () => {
                   setTimeout(() => resolve(), 1000)
                 })
               }}
+              actions={[
+                {
+                  icon: EditOutlinedIcon,
+                  tooltip: 'Edit',
+                  onClick: (event, oldData) => handleEditOpen(oldData),
+                },
+              ]}
               // onSelectionChange={(selectedRows) => console.log(selectedRows)}
               options={{
                 paging: true,
                 sorting: true,
                 search: true,
                 exportAllData: true, exportFileName: "TableData", addRowPosition: "first", actionsColumnIndex: -1,
-                // selection: true,
-                // showSelectAllCheckbox: false, showTextRowsSelected: true, selectionProps: rowData => ({
-                //   color: "primary"
-                // }),
-                // rowStyle: (data, index) => index % 2 === 0 ? { background: "#f5f5f5" } : null,
                 headerStyle: { background: "#f5f5f5", color: "#000", borderTop: "1px solid #D2D5DB" },
                 searchFieldAlignment: 'left',
                 searchFieldStyle: { background: "#f5f5f5", padding: "2px", marginRight: "18px", borderRadius: "8px 8px 0 0", borderBottom: 'none' }
               }}
-              actions={[
-                {
-                  icon: NoteAddOutlinedIcon,
-                  tooltip: 'Import excel',
-                  isFreeAction: true,
-                  onClick: handleFileUpload
-                }
-              ]}
             />
-            <RemoveCustomer Table={Table} />
           </div>
         )
       }
+      <EditTablePopularPop isOpen={openEditModal} closeModal={handleEditClose} oldData={getOldData} />
     </>
   )
 }

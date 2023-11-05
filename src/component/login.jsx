@@ -20,7 +20,7 @@ import { loginAuth } from "../redux/slice/AuthSlice";
 
 
 const loginSchema = Yup.object().shape({
-  username: Yup.string().required("username can't empty"),
+  email: Yup.string().required("email can't empty"),
   password: Yup.string().required("Password can't empty"),
 });
 export default function Login() {
@@ -39,14 +39,15 @@ export default function Login() {
   const handleLogin = (values, { setFieldError }) => {
     dispatch(setLoading(true));
     loginService(user).then((r) => {
-      localStorage.setItem("token", r.data?.payload?.token);
+      console.log(r)
+      localStorage.setItem("token", r.data?.token);
       if (r.status === 200) {
         dispatch(setLoading(false));
         dispatch(loginAuth(true))
-        navigate("/");
+        navigate("/dashboard");
       } else {
         dispatch(setLoading(false));
-        setFieldError("username", "username not exist");
+        setFieldError("email", "email not exist");
         setFieldError("password", "Password incorrect");
 
       }
@@ -60,7 +61,7 @@ export default function Login() {
 
         <Formik
           initialValues={{
-            username: "",
+            email: "",
             password: "",
           }}
           validationSchema={loginSchema}
@@ -77,20 +78,20 @@ export default function Login() {
                   {/* Email and Phone */}
                   <div className="mt-6 mb-3">
                     <span className="label-text text-base font-sans">
-                      Username
+                      Email
                     </span>
                     <div className="flex items-center bg-white-smoke rounded py-1 px-3">
                       <EmailOutlinedIcon className="text-gray-500"/>
                       <Field
                         placeholder="Admin"
-                        name="username"
-                        id="username"
+                        name="email"
+                        id="email"
                         className="bg-transparent border-none w-full text-gray-700 mr-3 py-1 px-2 focus:outline-none focus:ring-0"
                       />
                     </div>
-                    {errors.username && touched.username ? (
+                    {errors.email && touched.email ? (
                       <div className="text-red-500 ml-3 text-sm mt-2">
-                        {errors.username}
+                        {errors.email}
                       </div>
                     ) : null}
                   </div>

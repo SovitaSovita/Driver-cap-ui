@@ -1,13 +1,13 @@
 import React from "react";
-import logo from "../assets/img/Artboard_3_2_213b1bea-2b74-4aab-86a5-1bfb64acc4a5_100x@2x.avif";
+import logo from "../assets/images/logo/logo.png";
 
 import DashboardOutlinedIcon from "@mui/icons-material/DashboardOutlined";
 import ChecklistOutlinedIcon from "@mui/icons-material/ChecklistOutlined";
-import EmojiEventsOutlinedIcon from "@mui/icons-material/EmojiEventsOutlined";
+import FestivalOutlinedIcon from '@mui/icons-material/FestivalOutlined';
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
-import PolylineOutlinedIcon from '@mui/icons-material/PolylineOutlined';
-
+import SlideshowOutlinedIcon from '@mui/icons-material/SlideshowOutlined';
+import LightbulbOutlinedIcon from '@mui/icons-material/LightbulbOutlined';
 
 import { Link, useLocation, useNavigate } from "react-router-dom";
 
@@ -61,10 +61,10 @@ export default function SideBar() {
                 <img src={logo} alt="logo" className="" />
               </div>
               <ul className="text-sm list-none mt-5">
-                <Link to={"/"}>
+                <Link to={"/dashboard"}>
                   <li
                     className={
-                      currentPath == "/"
+                      currentPath == "/dashboard"
                         ? "flex items-center bg-brand-red hover:bg-red-700 text-white rounded-lg px-4 py-3 mb-1 transition-all"
                         : "flex items-center rounded-lg px-4 py-3 mb-1 hover:bg-white-smoke transition-all"
                     }
@@ -73,40 +73,52 @@ export default function SideBar() {
                     <span>Dashboard</span>
                   </li>
                 </Link>
-                <Link to={"/manage"}>
+                <Link to={"/popular"}>
                   <li
                     className={
-                      currentPath == "/manage"
+                      currentPath == "/popular"
                         ? "flex items-center bg-brand-red hover:bg-red-700 text-white rounded-lg px-4 py-3 mb-1 transition-all"
                         : "flex items-center rounded-lg px-4 py-3 mb-1 hover:bg-white-smoke transition-all"
                     }
                   >
                     <ChecklistOutlinedIcon className="mr-2" />
-                    <span>Manage list</span>
+                    <span>Popular Tour</span>
                   </li>
                 </Link>
-                <Link to={"/winner"}>
+                <Link to={"/tourtype"}>
                   <li
                     className={
-                      currentPath == "/winner"
+                      currentPath == "/tourtype"
                         ? "flex items-center bg-brand-red hover:bg-red-700 text-white rounded-lg px-4 py-3 mb-1 transition-all"
                         : "flex items-center rounded-lg px-4 py-3 mb-1 hover:bg-white-smoke transition-all"
                     }
                   >
-                    <EmojiEventsOutlinedIcon className="mr-2" />
-                    <span>Winner</span>
+                    <FestivalOutlinedIcon className="mr-2" />
+                    <span>Tour Type</span>
                   </li>
                 </Link>
-                <Link to={"/default"}>
+                <Link to={"/slider"}>
                   <li
                     className={
-                      currentPath == "/default"
+                      currentPath == "/slider"
                         ? "flex items-center bg-brand-red hover:bg-red-700 text-white rounded-lg px-4 py-3 mb-1 transition-all"
                         : "flex items-center rounded-lg px-4 py-3 mb-1 hover:bg-white-smoke transition-all"
                     }
                   >
-                    <PolylineOutlinedIcon className="mr-2" />
-                    <span>Default Winner</span>
+                    <SlideshowOutlinedIcon className="mr-2" />
+                    <span>Slider</span>
+                  </li>
+                </Link>
+                <Link to={"/general"}>
+                  <li
+                    className={
+                      currentPath == "/general"
+                        ? "flex items-center bg-brand-red hover:bg-red-700 text-white rounded-lg px-4 py-3 mb-1 transition-all"
+                        : "flex items-center rounded-lg px-4 py-3 mb-1 hover:bg-white-smoke transition-all"
+                    }
+                  >
+                    <LightbulbOutlinedIcon className="mr-2" />
+                    <span>General Info</span>
                   </li>
                 </Link>
                 <Link to={"/account"}>
